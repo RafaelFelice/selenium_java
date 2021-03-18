@@ -12,28 +12,36 @@ public class LoginPage extends BasePage {
         super(navegador);
     }
 
+    public final By BTN_CADASTRAR = By.linkText("Cadastre-se");
+    private final By INPUT_EMAIL = By.name("email");
+    private final By INPUT_PASS = By.name("password");
+    private final By BTN_ENTRAR = By.xpath("//button[text()='Entrar']");
+    public final By MENSAGEM_HOME_PAGE = By.xpath("//p[text()='Este é seu sistema para administrar seu ecommerce.']");
+    public final By RESULTADO_MENSAGEM = By.xpath("//b");
+
+
     public CadastrarUsuariosPage clicarCadastrese() {
-        navegador.findElement(By.linkText("Cadastre-se")).click();
+        navegador.findElement(BTN_CADASTRAR).click();
         return new CadastrarUsuariosPage(navegador);
     }
 
-    public LoginPage digitarEmail(String email){
-        navegador.findElement(By.name("email")).sendKeys(email);
+    public LoginPage digitarEmail(String email) {
+        navegador.findElement(INPUT_EMAIL).sendKeys(email);
         return this;
     }
 
-    public LoginPage digitarSenha(String senha){
-        navegador.findElement(By.name("password")).sendKeys(senha);
+    public LoginPage digitarSenha(String senha) {
+        navegador.findElement(INPUT_PASS).sendKeys(senha);
         return this;
     }
 
-    public HomePage clicarEntrarLogin(){
-        navegador.findElement(By.xpath("//button[text()='Entrar']")).click();
+    public HomePage clicarEntrarLogin() {
+        navegador.findElement(BTN_ENTRAR).click();
         return new HomePage(navegador);
     }
 
-    public HomePage capturarTextoHome(String EsteESeuSistemaParaAdministrarSeuEcommerce){
-        WebElement mensagemPop = navegador.findElement(By.xpath("//p[text()='Este é seu sistema para administrar seu ecommerce.']"));
+    public HomePage capturarTextoHome(String EsteESeuSistemaParaAdministrarSeuEcommerce) {
+        WebElement mensagemPop = navegador.findElement(MENSAGEM_HOME_PAGE);
         String mensagem = mensagemPop.getText();
         assertEquals(mensagem, EsteESeuSistemaParaAdministrarSeuEcommerce);
 
@@ -41,20 +49,19 @@ public class LoginPage extends BasePage {
     }
 
 
-    public LoginPage clicarEntrarErro(){
-        navegador.findElement(By.xpath("//button[text()='Entrar']")).click();
+    public LoginPage clicarEntrarErro() {
+        navegador.findElement(BTN_ENTRAR).click();
         return this;
     }
 
 
-    public LoginPage textoSenhaInvalida(String senhaInvalida){
-        WebElement mensagemPop = navegador.findElement(By.xpath("//b"));
+    public LoginPage textoSenhaInvalida(String senhaInvalida) {
+        WebElement mensagemPop = navegador.findElement(RESULTADO_MENSAGEM);
         String mensagem = mensagemPop.getText();
         assertEquals(mensagem, senhaInvalida);
 
         return this;
     }
-
 
 
 }

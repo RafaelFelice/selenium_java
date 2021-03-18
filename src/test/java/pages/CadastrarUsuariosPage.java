@@ -11,42 +11,52 @@ public class CadastrarUsuariosPage extends BasePage {
         super(navegador);
     }
 
+    private final LoginPage login = new LoginPage(navegador);
+
+    private final By FORMULARIO = By.className("form");
+    private final By INPUT_NAME = By.name("nome");
+    private final By INPUT_EMAIL = By.name("email");
+    private final By INPUT_PASS = By.name("password");
+    private final By BTN_ENTRAR = By.cssSelector("button");
+    private final By BTN_CADASTRAR_ADM = By.className("form-check-input");
+
+
 
     public CadastrarUsuariosPage digitarNome(String nome) {
-        navegador.findElement(By.className("form")).findElement(By.name("nome")).sendKeys(nome);
+        navegador.findElement(FORMULARIO).findElement(INPUT_NAME).sendKeys(nome);
 
         return this;
     }
 
     public CadastrarUsuariosPage digitarEmail(String email) {
-        navegador.findElement(By.className("form")).findElement(By.name("email")).sendKeys(email);
+        navegador.findElement(FORMULARIO).findElement(INPUT_EMAIL).sendKeys(email);
 
         return this;
 
     }
 
     public CadastrarUsuariosPage digitarSenha(String senha) {
-        navegador.findElement(By.className("form")).findElement(By.name("password")).sendKeys(senha);
+        navegador.findElement(FORMULARIO).findElement(INPUT_PASS).sendKeys(senha);
 
         return this;
     }
 
     public CadastrarUsuariosPage clicarEntrar() {
-        navegador.findElement(By.className("form")).findElement(By.cssSelector("button")).click();
+        navegador.findElement(FORMULARIO).findElement(BTN_ENTRAR).click();
 
         return this;
 
     }
 
     public CadastrarUsuariosPage clicarCadastrarComoAdm() {
-        navegador.findElement(By.className("form")).findElement(By.className("form-check-input")).click();
+        navegador.findElement(FORMULARIO).findElement(BTN_CADASTRAR_ADM).click();
 
         return this;
 
     }
 
     public CadastrarUsuariosPage textoSenhaEmBranco(String senhaEmBranco){
-        WebElement mensagemPop = navegador.findElement(By.xpath("//b"));
+        WebElement mensagemPop = navegador.findElement(login.RESULTADO_MENSAGEM);
         String mensagem = mensagemPop.getText();
         assertEquals(mensagem, senhaEmBranco);
 

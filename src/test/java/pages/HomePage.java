@@ -11,8 +11,10 @@ public class HomePage extends BasePage {
         super(navegador);
     }
 
+    private final LoginPage login = new LoginPage(navegador);
+
     public HomePage capturarTextoHome(String sistemaParaAdministrador){
-        WebElement mensagemPop = navegador.findElement(By.xpath("//p[text()='Este é seu sistema para administrar seu ecommerce.']"));
+        WebElement mensagemPop = navegador.findElement(login.MENSAGEM_HOME_PAGE);
         String mensagem = mensagemPop.getText();
         assertEquals(mensagem, sistemaParaAdministrador);
 
@@ -20,7 +22,7 @@ public class HomePage extends BasePage {
     }
 
     public CadastrarProdutosPage clicarEmCadastrar(){
-        navegador.findElement(By.linkText("Cadastrar")).click();
+        navegador.findElement(login.BTN_CADASTRAR).click();
         return new CadastrarProdutosPage(navegador);
     }
 
