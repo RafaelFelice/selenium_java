@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -20,22 +21,27 @@ public class AptosTests {
     @Test
     public void testLogin() {
         new LoginPage(navegador)
-                .digitarEmail("rafaelfelice92@gmail.com")
+                .digitarEmail("rafaelfelice@gmail.com")
                 .digitarSenha("rafael10")
                 .clicarEntrarLogin()
-                .capturarTextoHome("EsteESeuSistemaParaAdministrar");
+                .capturarTextoHome("Este é seu sistema para administrar seu ecommerce.");
     }
 
     @Test
     public void testCadastrarUsuario01() {
         new LoginPage(navegador)
                 .clicarCadastrese()
-                .capturarTexto("cadastro")
                 .digitarNome("Rafael de Felice")
                 .digitarEmail("rafaelfelice@gmail.com")
                 .digitarSenha("rafael10")
                 .clicarCadastrarComoAdm()
                 .clicarEntrar();
     }
+
+    @After
+    public void tearDown(){
+        navegador.quit();
+    }
+
 
 }
