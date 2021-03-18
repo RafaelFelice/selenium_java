@@ -11,10 +11,10 @@ public class HomePage extends BasePage {
         super(navegador);
     }
 
-    public HomePage capturarTextoHome(String EsteESeuSistemaParaAdministrarSeuEcommerce){
+    public HomePage capturarTextoHome(String sistemaParaAdministrador){
         WebElement mensagemPop = navegador.findElement(By.xpath("//p[text()='Este é seu sistema para administrar seu ecommerce.']"));
         String mensagem = mensagemPop.getText();
-        assertEquals("Este é seu sistema para administrar seu ecommerce.", mensagem);
+        assertEquals(mensagem, sistemaParaAdministrador);
 
         return this;
     }

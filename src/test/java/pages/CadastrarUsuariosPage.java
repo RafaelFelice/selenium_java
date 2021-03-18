@@ -11,30 +11,22 @@ public class CadastrarUsuariosPage extends BasePage {
         super(navegador);
     }
 
-    public CadastrarUsuariosPage capturarTexto(String cadastro) {
-        WebElement mensagemPop = navegador.findElement(By.xpath("//h2[text()='Cadastro ']"));
-        String mensagem = mensagemPop.getText();
-        assertEquals("Cadastro", mensagem);
-        return this;
-    }
-
-
 
     public CadastrarUsuariosPage digitarNome(String nome) {
-        navegador.findElement(By.className("form")).findElement(By.name("nome")).sendKeys("Rafael de Felice");
+        navegador.findElement(By.className("form")).findElement(By.name("nome")).sendKeys(nome);
 
         return this;
     }
 
     public CadastrarUsuariosPage digitarEmail(String email) {
-        navegador.findElement(By.className("form")).findElement(By.name("email")).sendKeys("rafaelfelice@gmail.com");
+        navegador.findElement(By.className("form")).findElement(By.name("email")).sendKeys(email);
 
         return this;
 
     }
 
     public CadastrarUsuariosPage digitarSenha(String senha) {
-        navegador.findElement(By.className("form")).findElement(By.name("password")).sendKeys("rafael10");
+        navegador.findElement(By.className("form")).findElement(By.name("password")).sendKeys(senha);
 
         return this;
     }
@@ -51,6 +43,14 @@ public class CadastrarUsuariosPage extends BasePage {
 
         return this;
 
+    }
+
+    public CadastrarUsuariosPage textoSenhaEmBranco(String senhaEmBranco){
+        WebElement mensagemPop = navegador.findElement(By.xpath("//b"));
+        String mensagem = mensagemPop.getText();
+        assertEquals(mensagem, senhaEmBranco);
+
+        return this;
     }
 
 

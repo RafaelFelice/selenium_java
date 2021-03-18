@@ -11,23 +11,23 @@ public class CadastrarProdutosPage extends BasePage {
         super(navegador);
     }
 
-    public CadastrarProdutosPage digitarName(String KitVasco){
-        navegador.findElement(By.name("name")).sendKeys("Kit Vasco");
+    public CadastrarProdutosPage digitarName(String kitVasco){
+        navegador.findElement(By.name("name")).sendKeys(kitVasco);
         return this;
     }
 
-    public CadastrarProdutosPage digitarPreco(String Preço){
-        navegador.findElement(By.name("price")).sendKeys("400.00");
+    public CadastrarProdutosPage digitarPreco(String preço){
+        navegador.findElement(By.name("price")).sendKeys(preço);
         return this;
     }
 
-    public CadastrarProdutosPage digitarDescricao(String Descriçao){
-        navegador.findElement(By.id("exampleFormControlTextarea1")).sendKeys("Casaco e calça");
+    public CadastrarProdutosPage digitarDescricao(String descriçao){
+        navegador.findElement(By.id("exampleFormControlTextarea1")).sendKeys(descriçao);
         return this;
     }
 
-    public CadastrarProdutosPage digitarQuantidade(String Quantidade){
-        navegador.findElement(By.name("quantity")).sendKeys("100");
+    public CadastrarProdutosPage digitarQuantidade(String quantidade){
+        navegador.findElement(By.name("quantity")).sendKeys(quantidade);
         return this;
     }
 
@@ -36,10 +36,10 @@ public class CadastrarProdutosPage extends BasePage {
         return this;
     }
 
-    public ListarProdutosPage capturarTextoProd(String ListaDosProdutos) {
+    public ListarProdutosPage capturarTextoProd(String listaDosProdutos) {
         WebElement mensagemPop = navegador.findElement(By.cssSelector("h1"));
         String mensagem = mensagemPop.getText();
-        assertEquals("Lista dos Produtos", mensagem);
+        assertEquals(mensagem, listaDosProdutos);
         return new ListarProdutosPage(navegador);
     }
 
